@@ -42,16 +42,13 @@ products.addEventListener("click", (e) => {
     if (confirm("silmek istiyor musun")) {
       e.target.closest(".product").remove();
       calculatePrices(e.target);
-       if (!products.hasChildNodes()) {
-         products.innerHTML = "No product";
-         products.classList.add("no-product");
-         e.target.parentNode.style.display = "none";
-       }
-     
+      if (document.querySelector("#selected-price").textContent == 0) {
+        products.innerHTML = "No product";
+        products.classList.add("no-product");
+        e.target.parentNode.style.display = "none";
+      }
     }
   }
-
-
 });
 
 const calculatePrices = (btn) => {
@@ -89,5 +86,3 @@ const calculateTotalPrices = () => {
   document.querySelector("#tax").textContent = taxPrice.toFixed(2);
   document.querySelector("#total").textContent = total_price;
 };
-
-
